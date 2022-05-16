@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS employees;
 
 -- department table structure
 CREATE TABLE department (
@@ -17,7 +17,7 @@ CREATE TABLE role (
 );
 
 -- employee table structure
-CREATE TABLE employee (
+CREATE TABLE employees (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
