@@ -1,7 +1,7 @@
-INSET INTO department (name)
+INSERT INTO department (name)
 VALUES
 ('Childrenswear'),
-('Footwear & Accessories'),
+('Footwear and Accessories'),
 ('Menswear'),
 ('Womenswear'),
 ('Home Goods'),
@@ -18,7 +18,7 @@ VALUES
 ('Grocery Clerk - PT', 16000, 004),
 ('Fashion Associate - FT', 32000, 005),
 ('Fashion Associate - PT', 16000, 006),
-('Grocery & Hardgoods Manager', 38000, 007),
+('Grocery and Hardgoods Manager', 38000, 007),
 ('Fashion Manager', 38000, 008),
 ('Assistant Manager', 42000, 009),
 ('Store Manager', 52000, 010);
