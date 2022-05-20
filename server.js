@@ -126,7 +126,7 @@ const newEmployee = async() => {
 }
 
 const newRole = async() => {
-    const [ dept ] = await DB.addRole();
+    const [ dept ] = await DB.getDepartment();
     const deptArr = dept.map(({ id }) => ({
         value: id
     }
