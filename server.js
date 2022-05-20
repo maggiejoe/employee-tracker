@@ -1,6 +1,7 @@
 const DB = require('./db/methods');
 const inquirer = require('inquirer');
 const { printTable } = require('console-table-printer');
+const { addEmployee } = require('./db/methods');
 
 const mainMenu = () => {
     inquirer.prompt({ 
@@ -119,11 +120,10 @@ const newEmployee = async() => {
             manager_id: response.managerName,
         };
         console.log(newEmployee); 
+        DB.addEmployee(newEmployee);
         mainMenu();
     })
 }
-
-// how do you add the new employee to the employee table
 
 const newRole = async() => {
     const [ dept ] = await DB.addRole();
@@ -149,21 +149,44 @@ const newRole = async() => {
     }
     ]).then(response => {
         var newRole = {
-            role_title: response.roleTitle,
-            role_salary: response.roleSalary,
-            department: response.deptChoice
+            title: response.roleTitle,
+            salary: response.roleSalary,
+            department_id: response.deptChoice
         };
         console.log(newRole);
+        DB.addRole(newRole);
         mainMenu();
     })
 }
 
-const newDepartment = async() => {
+// where & how to add an if statment to make sure that a role or department isn't added twice
 
+const newDepartment = async() => {
+    inquirer.prompt([ {
+        type: 'input',
+        name: 'newDept',
+        message: 'What new department would you like to add?'
+    }
+    ]).then(response => {
+        var newDept = {
+            name: response.newDept
+        };
+        console.log(newDept);
+        DB.addDept(newDept);
+        mainMenu();
+    })
 }
 
 const updateEmployee = async() => {
-
+    const [ employees ] = await DB.getEmployees();
+    const empArr = employees.map(({ id, first_name, last_name, role_id, manager_id }) => ({
+        name: first_name + ' ' + last_name + ' ' + role_id + ' ' + manager_id,
+        value: id
+    }
+    ));
+    inquirer.prompt([ {
+        
+    }])
 }
 
 mainMenu();

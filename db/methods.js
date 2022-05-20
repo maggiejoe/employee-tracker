@@ -27,6 +27,14 @@ class DB {
     addRole(roleObj) {
         return this.connection.promise().query('INSERT INTO role SET ?', roleObj)
     }
+
+    addDept(deptObj) {
+        return this.connection.promise().query('INSERT INTO department SET ?', deptObj)
+    }
+
+    updateEmployee(updateEmpObj) {
+        return this.connection.promise().query('UPDATE employees SET ?', updateEmpObj)
+    }
  };
 
  module.exports = new DB(connection);
