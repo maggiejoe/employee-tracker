@@ -159,8 +159,6 @@ const newRole = async() => {
     })
 }
 
-// where & how to add an if statment to make sure that a role or department isn't added twice
-
 const newDepartment = async() => {
     inquirer.prompt([ {
         type: 'input',
@@ -190,18 +188,11 @@ const updateEmployee = async() => {
         value: id
     }
     ));
-    const [ managers ] = await DB.getEmployees();
-    const managerArr = managers.map(({ id, first_name, last_name }) => ({
-        name: first_name + ' ' + last_name,
-        value: id
-    }
-    ));
     inquirer.prompt([ {
         type: 'list',
         name: 'chooseEmployee',
         message: 'Which employee would you like to update?',
         choices: empArr
-        // how to add in the ability for the user to change employee after user selects which employee they're updating
     },
     {
         type: 'input',
@@ -220,11 +211,12 @@ const updateEmployee = async() => {
         choices: roleArr
     },
     ]).then(response => {
-        var updatedEmployee = {
-            first_name: response.updatedFirstName,
-            last_name: response.updatedLastName,
-            role_id: response.updatedRole,
-        }
+        var updatedEmployee = [
+            response.updatedRole,
+            response.updatedFirstName,
+            response.updatedLastName,
+            response.chooseEmployee
+        ]
         console.log(updatedEmployee);
         DB.updateEmployee(updatedEmployee);
         mainMenu();

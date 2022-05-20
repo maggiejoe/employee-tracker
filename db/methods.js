@@ -33,11 +33,8 @@ class DB {
     }
 
     updateEmployee(updateEmpObj) {
-        return this.connection.promise().query('UPDATE employees SET role_id=? WHERE id=?', updateEmpObj)
+        return this.connection.promise().query('UPDATE employees SET role_id=?, first_name=?, last_name=? WHERE id=?', updateEmpObj)
     }
-
-    // "UPDATE employee SET role_id = ? WHERE id = ?",
-    //   [chooseEmployee, chooseRole]
  };
 
  module.exports = new DB(connection);
