@@ -248,14 +248,20 @@ const updateEmployee = async() => {
     },
     {
         type: 'list',
-        name: 'chooseManager',
+        name: 'updatedManager',
         message: 'What manager would you like to update?',
         choices: managerArr
     }
     ]).then(response => {
         var updatedEmployee = {
-
+            first_name: response.updatedFirstName,
+            last_name: response.updatedLastName,
+            role_id: response.updatedRole,
+            manager_id: response.updatedManager
         }
+        console.log(updatedEmployee);
+        DB.updateEmployee(updatedEmployee);
+        mainMenu();
     })
 }
 
