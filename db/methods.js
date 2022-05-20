@@ -24,6 +24,9 @@ class DB {
         return this.connection.promise().query('INSERT INTO employees SET ?', empObj)
     }
 
+    addRole(roleObj) {
+        return this.connection.promise().query('INSERT INTO role SET ?', roleObj)
+    }
  };
 
  module.exports = new DB(connection);
