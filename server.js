@@ -179,14 +179,40 @@ const newDepartment = async() => {
 
 const updateEmployee = async() => {
     const [ employees ] = await DB.getEmployees();
-    const empArr = employees.map(({ id, first_name, last_name, role_id, manager_id }) => ({
-        name: first_name + ' ' + last_name + ' ' + role_id + ' ' + manager_id,
+    const empArr = employees.map(({ id, first_name, last_name }) => ({
+        name: first_name + ' ' + last_name,
+        value: id
+    }
+    ));
+    const [ roles ] = await DB.getRoles();
+    const roleArr = roles.map(({ id, title }) => ({
+        name: title,
+        value: id
+    }
+    ));
+    const [ managers ] = await DB.getEmployees();
+    const managerArr = managers.map(({ id, first_name, last_name }) => ({
+        name: first_name + ' ' + last_name,
         value: id
     }
     ));
     inquirer.prompt([ {
-        
-    }])
+        type: 'list',
+        name: 'chooseEmployee',
+        message: 'Which employee would you like to update?',
+        choices: empArr
+        // how to add in the ability for the user to change employee after user selects which employee they're updating
+    },
+    {
+        type: 'list',
+        name: 'chooseRole',
+        message: 'Would you like to update the employees role?',
+        // what prompt to add a boolean?
+        // if user selects true(yes) show choices to change role
+        choices: roleArr
+        // how to add in the ability for the user to change role after user selects which role they're updating
+    }
+    ])
 }
 
 mainMenu();
