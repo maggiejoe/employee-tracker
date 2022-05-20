@@ -204,15 +204,59 @@ const updateEmployee = async() => {
         // how to add in the ability for the user to change employee after user selects which employee they're updating
     },
     {
-        type: 'list',
-        name: 'chooseRole',
+        type: 'confirm',
+        name: 'changeName',
+        message: 'Would you like to update the employees name?',
+        choices: 'default'
+    },
+    {
+        type: 'input',
+        name: 'updatedFirstName',
+        message: 'What is the updated first name of this employee?',
+    },
+    {
+        type: 'input',
+        name: 'updatedLastName',
+        message: 'What is the updated last name of this employee?'
+    },
+    {
+        type: 'confirm',
+        name: 'changeRole',
         message: 'Would you like to update the employees role?',
         // what prompt to add a boolean?
         // if user selects true(yes) show choices to change role
-        choices: roleArr
+        choices: 'default'
         // how to add in the ability for the user to change role after user selects which role they're updating
+    },
+    {
+        type: 'list',
+        name: 'chooseRole',
+        message: 'What role would you like to update?',
+        choices: roleArr
+    },
+    {
+        type: 'list',
+        name: 'updatedRole',
+        message: 'Select the updated role.',
+        choices: roleArr
+    },
+    {
+        type: 'confirm',
+        name: 'changeManager',
+        message: 'Would you like to update the manager for this employee?',
+        choices: 'default'
+    },
+    {
+        type: 'list',
+        name: 'chooseManager',
+        message: 'What manager would you like to update?',
+        choices: managerArr
     }
-    ])
+    ]).then(response => {
+        var updatedEmployee = {
+
+        }
+    })
 }
 
 mainMenu();
